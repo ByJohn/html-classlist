@@ -1,0 +1,11 @@
+{
+	"name": "john/html-classlist",
+	"authors": {
+		"name": "John Evans"
+	},
+	"description": "Easily create, manage and output css classes as an attribute of HTML elements.",
+	"require-dev": {
+		"phpunit/phpunit": "^5.3"
+	},
+		"require": {}
+}
