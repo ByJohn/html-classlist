@@ -67,6 +67,11 @@ class HTML_Classlist {
 		return $this;
 	}
 
+	public function addIf($true, $classes = '') {
+		if($true) $this->add($classes);
+		return $this;
+	}
+
 	public function getOutput() {
 		if(count($this->classes) > 0)
 			return implode(' ', $this->classes);

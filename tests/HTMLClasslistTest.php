@@ -42,6 +42,15 @@ class HTML_Classlist_Test extends PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function addIfTestData() {
+		return array(
+			'true' => [true, true],
+			'false' => [false, false],
+			'truth test' => [2 > 1, true],
+			'false test' => [1 == 2, false],
+		);
+	}
+
 	public function testCreation() {
 		$this->assertInstanceOf('HTML_Classlist', new HTML_Classlist);
 	}
@@ -88,6 +97,19 @@ class HTML_Classlist_Test extends PHPUnit_Framework_TestCase {
 	 */
 	public function testInvalidAddTriggerWarning($input) {
 		$cl = new HTML_Classlist($input);
+	}
+
+	/**
+	 * @dataProvider addIfTestData
+	 */
+	public function testAddIf($trueTest, $shouldAddClasses) {
+		$cl = new HTML_Classlist();
+		$cl->addIf($trueTest, 'test');
+
+		if($shouldAddClasses)
+			$this->assertEquals('test', $cl->getOutput());
+		else
+			$this->assertEquals('', $cl->getOutput());
 	}
 
 }
