@@ -9,6 +9,7 @@ class HTML_Classlist_Test extends PHPUnit_Framework_TestCase {
 			'boolean true' => [true, ''],
 			'boolean false' => [false, ''],
 			'single string' => ['test', 'test'],
+			'string with hyphen' => ['test-two', 'test-two'],
 			'multi string' => ['test something', 'test something'],
 			'string with duplicate' => ['test test', 'test'],
 			'multi string with duplicate' => ['test something test', 'test something'],
@@ -20,6 +21,7 @@ class HTML_Classlist_Test extends PHPUnit_Framework_TestCase {
 			'array with array item' => [array(array('test')), ''],
 			'array with boolean item' => [array(false), ''],
 			'multi item array' => [array('test', 'something'), 'test something'],
+			'multi item array with valid strings' => [array('-test', '_something', '-_else'), '-test _something -_else'],
 			'multi item array with blank' => [array('test', 'something', ''), 'test something'],
 			'multi item array with duplicate' => [array('test', 'something', 'test'), 'test something']
 		);
@@ -31,6 +33,12 @@ class HTML_Classlist_Test extends PHPUnit_Framework_TestCase {
 			'star start' => ['*test'],
 			'dot start' => ['.test'],
 			'hash start' => ['#test'],
+			'single character' => ['t'],
+			'hyphen and number start' => ['-2test'],
+			'double hyphen start' => ['--test'],
+			'contains single quote' => ["test'"],
+			'contains double quote' => ['test"'],
+			'contains greater than' => ['test>ing']
 		);
 	}
 
@@ -75,11 +83,10 @@ class HTML_Classlist_Test extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * TODO
 	 * @dataProvider invalidClassesToAddData
 	 * @expectedException PHPUnit_Framework_Error_Warning
 	 */
-	public function testInvalidAddTriggerWarning($input, $expectedOutput) {
+	public function testInvalidAddTriggerWarning($input) {
 		$cl = new HTML_Classlist($input);
 	}
 
