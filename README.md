@@ -71,8 +71,8 @@ $classes->add('new-class')->remove('my-class');
 ## Features
 * Prevents duplicate class names from being added
 * Triggers a warning if an invalid CSS class name is provided
-* All methods that accept class names with accept a space-separated string or an array
-* All appropriate methods return itself, so calls can be chained
+* All methods that accept class names will accept a space-separated string or an array
+* All appropriate methods return themselves (their PHP class instance), so calls can be chained
 
 ## To Do
 * Add more comments and DocBlocks
