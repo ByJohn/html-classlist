@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Helps to manage a list of CSS class names when dynamically adding then to an HTML tag.
+ * Helps to manage a list of CSS class names when dynamically adding them to an HTML tag.
  *
  * @author John Evans
  * @version 1.0.0

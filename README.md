@@ -1,6 +1,6 @@
 # HTML Class Attribute Manager for PHP
 
-Helps to manage a list of CSS class names when dynamically adding then to an HTML tag.
+Helps to manage a list of CSS class names when dynamically adding them to an HTML tag.
 
 I created this project to explore unit testing with [PHPUnit](https://phpunit.de/), but I probably also use this class every now and then.
 
