@@ -17,7 +17,7 @@ $classes = new HTML_Classlist();
 //Create an instance with some initial classes
 $classes = new HTML_Classlist('my-class');
 
-//Multiple class names can be provided as a space-separated string or an array
+//Multiple class names can be provided as a space-separated string or an array of strings
 $classes = new HTML_Classlist('box left'); //String
 $classes = new HTML_Classlist(array('box', 'left')); //Array
 ```
@@ -42,16 +42,16 @@ $classes->addIf(1 == 1, 'new-class');
 $classes->removeIf(1 == 1, 'new-class');
 ```
 
-### Checking Class existence
+### Checking Class Existence
 ```php
-//Check if a classes exist
-$classes->has('my-class'); //True
+//Check if a class exist
+$classes->has('box'); //True
 
 //When multiple classes are checked, they all have to exist to return true
-$classes->has('my-class my-class-two'); //False
+$classes->has('box my-class-two'); //False
 ```
 
-### Output your Classes
+### Outputting your Classes
 ```php
 //Get your classes (return)
 $classes->getOutput(); //Returns 'box left'
@@ -65,13 +65,13 @@ $classes->html(); //Echos 'class="box left"'
 ### Chaining
 ```php
 //You can chain appropriate methods
-$classes->add('new-class')->remove('my-class');
+$classes->add('new-class')->remove('my-class')->html();
 ```
 
 ## Features
 * Prevents duplicate class names from being added
 * Triggers a warning if an invalid CSS class name is provided
-* All methods that accept class names will accept a space-separated string or an array
+* All methods that accept class names will accept a space-separated string or an array of strings
 * All appropriate methods return themselves (their PHP class instance), so calls can be chained
 
 ## To Do
