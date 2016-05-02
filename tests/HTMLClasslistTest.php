@@ -93,11 +93,8 @@ class HTML_Classlist_Test extends PHPUnit_Framework_TestCase {
 	 * @depends testGetOutput
 	 */
 	public function testOutput($cl) {
-		ob_start();
-
+		$this->expectOutputString('test');
 		$cl->output();
-
-		$this->assertEquals('test', ob_get_clean());
 	}
 
 	/**
