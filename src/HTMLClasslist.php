@@ -72,6 +72,18 @@ class HTML_Classlist {
 		return $this;
 	}
 
+	public function remove($classes = '') {
+		$classes = $this->sanitise_input($classes);
+
+		foreach ($classes as $class) {
+			$classLocation = array_search($class, $this->classes); //Get the location of a class in the array
+			if($this->classes)
+				unset($this->classes[$classLocation]); //If it is found in the array, remove it
+		}
+
+		return $this;
+	}
+
 	public function getOutput() {
 		if(count($this->classes) > 0)
 			return implode(' ', $this->classes);

@@ -51,6 +51,17 @@ class HTML_Classlist_Test extends PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function removeTestData() {
+		return array(
+			['test', 'test', ''],
+			['test', array('test'), ''],
+			['test', '', 'test'],
+			['test something', 'test', 'something'],
+			['test something', 'something test', ''],
+			['test something', 'test something else', ''],
+		);
+	}
+
 	public function testCreation() {
 		$this->assertInstanceOf('HTML_Classlist', new HTML_Classlist);
 	}
@@ -110,6 +121,15 @@ class HTML_Classlist_Test extends PHPUnit_Framework_TestCase {
 			$this->assertEquals('test', $cl->getOutput());
 		else
 			$this->assertEquals('', $cl->getOutput());
+	}
+
+	/**
+	 * @dataProvider removeTestData
+	 */
+	public function testRemove($classesToAdd, $classesToRemove, $expectedOutput) {
+		$cl = new HTML_Classlist($classesToAdd);
+		$cl->remove($classesToRemove);
+		$this->assertEquals($expectedOutput, $cl->getOutput());
 	}
 
 }
