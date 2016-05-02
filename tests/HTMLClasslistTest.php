@@ -62,6 +62,21 @@ class HTML_Classlist_Test extends PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function hasTestData() {
+		return array(
+			['test', 'test', true],
+			['', 'test', false],
+			['test', '', false],
+			['', '', false],
+			['something', 'test', false],
+			['something else', 'test', false],
+			['test something', 'test something', true],
+			['test something', 'something test', true],
+			['test something', array('something', 'test'), true],
+			['test something', 'something else', false]
+		);
+	}
+
 	public function testCreation() {
 		$this->assertInstanceOf('HTML_Classlist', new HTML_Classlist);
 	}
@@ -143,6 +158,14 @@ class HTML_Classlist_Test extends PHPUnit_Framework_TestCase {
 			$this->assertEquals('', $cl->getOutput());
 		else
 			$this->assertEquals('test', $cl->getOutput());
+	}
+
+	/**
+	 * @dataProvider hasTestData
+	 */
+	public function testHas($add, $has, $expectedOutput) {
+		$cl = new HTML_Classlist($add);
+		$this->assertEquals($expectedOutput, $cl->has($has));
 	}
 
 }

@@ -89,6 +89,23 @@ class HTML_Classlist {
 		return $this;
 	}
 
+	public function has($classes = '') {
+		$classes = $this->sanitise_input($classes);
+
+		if(count($classes) === 0 || count($this->classes) === 0) return false;
+
+		$foundCount = 0;
+
+		foreach ($classes as $class) {
+			if(in_array($class, $this->classes)) $foundCount++;
+		}
+
+		//If the number of classes found is the same as the number of classes being looked for
+		if($foundCount === count($classes)) return true;
+
+		return false;
+	}
+
 	public function getOutput() {
 		if(count($this->classes) > 0)
 			return implode(' ', $this->classes);
