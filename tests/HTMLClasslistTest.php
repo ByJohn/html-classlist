@@ -95,7 +95,7 @@ class HTML_Classlist_Test extends PHPUnit_Framework_TestCase {
 	public function testOutput($cl) {
 		$this->expectOutputString('test');
 		$cl->output();
-		
+
 		return $cl;
 	}
 
@@ -182,6 +182,24 @@ class HTML_Classlist_Test extends PHPUnit_Framework_TestCase {
 	public function testHas($add, $has, $expectedOutput) {
 		$cl = new HTML_Classlist($add);
 		$this->assertEquals($expectedOutput, $cl->has($has));
+	}
+
+	//TODO: Change with test to be more flexible. With this test at the moment, all appropriate methods need to accept an empty string as their first argument in order to pass
+	//Instead of an ignore list, maybe instead on check the methods that specify a return value of itself in its a docblock
+	public function testAllAppropriateMethodsReturnItself() {
+		$ignoredMethodNames = array(
+			'__construct"',
+			'has',
+			'getOutput',
+			'getHTML'
+		);
+
+		$cl = new HTML_Classlist();
+
+		foreach (get_class_methods(HTML_Classlist) as $methodName) {
+			if(!in_array($methodName, $ignoredMethodNames))
+				$this->assertInstanceOf('HTML_Classlist', call_user_func_array(array($cl, $methodName), array('')));
+		}
 	}
 
 }
