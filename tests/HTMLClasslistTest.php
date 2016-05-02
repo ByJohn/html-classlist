@@ -95,6 +95,25 @@ class HTML_Classlist_Test extends PHPUnit_Framework_TestCase {
 	public function testOutput($cl) {
 		$this->expectOutputString('test');
 		$cl->output();
+		
+		return $cl;
+	}
+
+	/**
+	 * @depends testOutput
+	 */
+	public function testGetHTML($cl) {
+		$this->assertEquals('class="test"', $cl->getHTML());
+
+		return $cl;
+	}
+
+	/**
+	 * @depends testGetOutput
+	 */
+	public function testHTML($cl) {
+		$this->expectOutputString('class="test"');
+		$cl->html();
 	}
 
 	/**

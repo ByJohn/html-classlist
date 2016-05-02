@@ -106,15 +106,31 @@ class HTML_Classlist {
 		return false;
 	}
 
-	public function getOutput() {
-		if(count($this->classes) > 0)
-			return implode(' ', $this->classes);
-		else
+	public function getOutput($html = false) {
+		if(count($this->classes) > 0) {
+			$classString = implode(' ', $this->classes);
+
+			if($html) $classString = 'class="' . $classString . '"';
+
+			return $classString;
+		}
+		else {
 			return '';
+		}
 	}
 
-	public function output() {
-		echo $this->getOutput();
+	public function output($html = false) {
+		echo $this->getOutput($html);
+		return $this;
+	}
+
+	public function getHTML() {
+		return $this->getOutput(true);
+	}
+
+	public function html() {
+		$this->output(true);
+		return $this;
 	}
 
 }
