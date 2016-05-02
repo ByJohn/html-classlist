@@ -132,4 +132,17 @@ class HTML_Classlist_Test extends PHPUnit_Framework_TestCase {
 		$this->assertEquals($expectedOutput, $cl->getOutput());
 	}
 
+	/**
+	 * @dataProvider addIfTestData
+	 */
+	public function testRemoveIf($trueTest, $shouldRemoveClasses) {
+		$cl = new HTML_Classlist('test');
+		$cl->removeIf($trueTest, 'test');
+
+		if($shouldRemoveClasses)
+			$this->assertEquals('', $cl->getOutput());
+		else
+			$this->assertEquals('test', $cl->getOutput());
+	}
+
 }

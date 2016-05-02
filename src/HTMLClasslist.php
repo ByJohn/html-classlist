@@ -84,6 +84,11 @@ class HTML_Classlist {
 		return $this;
 	}
 
+	public function removeIf($true, $classes = '') {
+		if($true) $this->remove($classes);
+		return $this;
+	}
+
 	public function getOutput() {
 		if(count($this->classes) > 0)
 			return implode(' ', $this->classes);
